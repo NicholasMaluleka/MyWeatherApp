@@ -14,20 +14,41 @@
             <div class="width80 flex-center card">
                 <div class="width70 details">
                     <div class="big Flex ">
-                        <img class="cloudy" src="./images/iconCloudy.png" alt=""> 
+                        <img class="cloudy" src="./images/iconCloudy.png" alt="">
                         <div class="deg column">
                             <span>24&deg;</span>
-                        <div class="location Flex">
-                            <img src="./images/location.png" alt=""> <span>Current Location</span>
-                        </div>
+                            <div class="location Flex">
+                                <img src="./images/location.png" alt=""> <span><input type="search"></span>
+                            </div>
                         </div>
                     </div>
                     <h1>Partly Cloudy</h1>
-
+                    <div class="arrows Flex center-center">
+                        <img src="./images/upArrow.png" alt="">
+                        <h1 class="arr-deg">17&deg;</h1>
+                        <img src="./images/downArrow.png" alt="">
+                        <h1 class="arr-deg">4&deg;</h1>
+                    </div>
+                    <div class="hourly">
+                        <template id="hourly">
+                            <div class="temperatures Flex space-around gap" id="temperature">
+                                <div class="hours space-between Flex-center">
+                                    <div class="time column">
+                                        <h2 class="current"></h2>
+                                        <img src="./images/iconCloudy.png" alt="">
+                                    </div>
+                                    <div class="hourDeg">
+                                      <p> 13&deg;</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script type="module" src="./index.js"></script>
 
 </html>

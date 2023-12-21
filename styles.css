@@ -2,6 +2,7 @@
     --blue:#111c42;
     --grey:#676970;
     --darkBlue:#171830;
+    --white: rgba(255, 255, 255, 0.161);
 }
 
 body{
@@ -15,6 +16,14 @@ body{
 
 .Flex{
     display: flex;
+}
+
+.space-around{
+    justify-content: space-around;
+}
+
+.space-betweeen{
+    justify-content: space-between;
 }
 
 .column{
@@ -44,6 +53,10 @@ body{
 .width70{
     width: 80%;
     margin-top: 35px;
+}
+
+.gap{
+    gap: 10px;
 }
 
 .innerContent{
@@ -98,4 +111,27 @@ h1{
 .location{
     height: 60%;
     width: 100%;
+}
+
+.arrows{
+    width: 10%;
+    height: 10%;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
+.arr-deg{
+    font-size: 50px;
+}
+
+.temperatures{
+    margin-top: 35px;
+    text-align: center;
+}
+
+.hours{
+    background-color: var(--white);
+    height: 200px;
+    width: 120px;
+    border-radius: 60px;
 }
