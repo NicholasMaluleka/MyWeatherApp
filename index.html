@@ -18,11 +18,13 @@
                         <div class="deg column">
                             <span>24&deg;</span>
                             <div class="location Flex">
-                                <img src="./images/location.png" alt=""> <span><input type="search" placeholder="Enter Location"></span>
+                                <img src="./images/location.png" alt=""> <span><input class="city-input" type="search" placeholder="Enter Location"></span>
+                                <button class="search-btn">Search</button>
+                                <button class="location-btn">Use Current Location</button>
                             </div>
                         </div>
                     </div>
-                    <h1>Partljy Cloudy</h1>
+                    <h1>Partly Cloudy</h1>
                     <div class="arrows Flex center-center">
                         <img src="./images/upArrow.png" alt="">
                         <h1 class="arr-deg">17&deg;</h1>
@@ -30,7 +32,7 @@
                         <h1 class="arr-deg">4&deg;</h1>
                     </div>
                     <div class="hourly">
-                        <template id="hourly">
+                        <div id="hourly">
                             <div class="temperatures Flex space-around gap" id="temperature">
                                 <div class="hours space-between Flex-center">
                                     <div class="time column">
@@ -38,17 +40,19 @@
                                         <img src="./images/iconCloudy.png" alt="">
                                     </div>
                                     <div class="hourDeg">
-                                      <p> 13&deg;</p>
+                                        <h6>Temperature: __°C</h6>
+                                        <h6>Wind: __ M/S</h6>
+                                        <h6>Humidity: __%</h6>
                                     </div>
                                 </div>
                             </div>
-                        </template>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script type="module" src="./index.js"></script>
+<script src="./index.js" defer></script>
 
 </html>
