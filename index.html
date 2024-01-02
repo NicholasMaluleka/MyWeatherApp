@@ -1,58 +1,43 @@
 <!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+    <title>Weather App Project JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="Wstyles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
-</head>
-
-<body>
-    <div class="mainContainer">
-        <div class="innerContent Flex-center-center">
-            <div class="width80 flex-center card">
-                <div class="width70 details">
-                    <div class="big Flex ">
-                        <img class="cloudy" src="./images/iconCloudy.png" alt="">
-                        <div class="deg column">
-                            <span>24&deg;</span>
-                            <div class="location Flex">
-                                <img src="./images/location.png" alt=""> <span><input class="city-input" type="search" placeholder="Enter Location"></span>
-                                <button class="search-btn">Search</button>
-                                <button class="location-btn">Use Current Location</button>
-                            </div>
-                        </div>
-                    </div>
-                    <h1>Partly Cloudy</h1>
-                    <div class="arrows Flex center-center">
-                        <img src="./images/upArrow.png" alt="">
-                        <h1 class="arr-deg">17&deg;</h1>
-                        <img src="./images/downArrow.png" alt="">
-                        <h1 class="arr-deg">3&deg;</h1>
-                    </div>
-                    <div class="hourly">
-                        <div id="hourly">
-                            <div class="temperatures Flex space-around gap" id="temperature">
-                                <div class="hours space-between Flex-center">
-                                    <div class="time column">
-                                        <h2 class="current"></h2>
-                                        <img src="./images/iconCloudy.png" alt="">
-                                    </div>
-                                    <div class="hourDeg">
-                                        <h6>Temperature: __°C</h6>
-                                        <h6>Wind: __ M/S</h6>
-                                        <h6>Humidity: __%</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-input">
+        <h3>Enter a location</h3>
+        <input class="city-input" type="text" placeholder="Search location">
+        <button class="search-btn">Search</button>
+        <div class="separator"></div>
+        <button class="location-btn">Use Current Location</button>
+      </div>
+      <div class="weather-data">
+        <div class="current-weather" hidden>
+          <div class="details" hidden>
+            <h2>_______ ( ______ )</h2>
+            <h6>Temperature: __°C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </div>
         </div>
+        <div class="days-forecast">
+          <h2>Next 5 days</h2>
+          <ul class="weather-cards" hidden>
+            <li class="card" hidden>
+              <h3>( ______ )</h3>
+              <h6>Temp: __C</h6>
+              <h6>Wind: __ M/S</h6>
+              <h6>Humidity: __%</h6>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-</body>
-<script src="./index.js" defer></script>
-
+    <script src="index.js" defer></script>
+  </body>
 </html>
