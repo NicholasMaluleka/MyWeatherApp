@@ -41,8 +41,5 @@ locationButton.addEventListener("click", getUserCoordinates);
 const getUserCoordinates = () => {
     // Get coordinates of user location using reverse geocoding
     const API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
-    navigator.geolocation.getCurrentPosition(
-        position => {
-            const {latitude, longitude} = position.coords; 
-        });
+    navigator.geolocation.getCurrentPosition();
 }
