@@ -133,7 +133,6 @@ h1 {
 
 .current-weather .icon h6 {
   margin-top: -10px;
-  text-transform: capitalize;
 }
 
 .days-forecast h2 {
@@ -148,7 +147,7 @@ h1 {
 }
 
 .weather-cards .card {
-  color: #fff;
+  color: #ffffff;
   padding: 18px 16px;
   list-style: none;
   width: calc(100% / 5);
