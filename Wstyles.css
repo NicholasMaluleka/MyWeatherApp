@@ -18,6 +18,7 @@ body {
   background-position: center;
   background-size: cover;
 }
+
 h1 {
   background: var(--purple);
   font-size: 1.75rem;

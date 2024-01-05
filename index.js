@@ -2,7 +2,7 @@ const API_KEY = "87a4b4f648814f8709197f45419a77f2";
 const cityInput = document.querySelector(".city-input");
 const searchButton = document.querySelector(".search-btn");
 const locationButton = document.querySelector(".location-btn");
-const currentWeatherDiv = document.querySelector(".current-weather");
+const currentWeatherDiv = document.querySelector(".current-weather"); 
 const weatherCardsDiv = document.querySelector(".weather-cards");
 
 const createWeatherCard = (cityName, weatherItem, index) => {
@@ -54,7 +54,7 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
 }
 
 const CityCoordinates = () => {
-    const cityName = cityInput.value.trim();
+    const cityName = cityInput.value;
     if (cityName === "") return;
     const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}&units=metric`;
     
@@ -66,6 +66,7 @@ const CityCoordinates = () => {
     })
 }
 searchButton.addEventListener("click", CityCoordinates);
+
 const UserCoordinates = () => {
     navigator.geolocation.getCurrentPosition(
         position => {
