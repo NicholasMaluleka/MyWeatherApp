@@ -5,24 +5,25 @@ const locationButton = document.querySelector(".location-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".weather-cards");
 
+
     
 const createWeatherCard = (cityName, weatherItem, index) => {
     if(index === 1) { 
         return `<div class="details">
-                    <h2>${cityName} (${weatherItem.dt_txt})</h2>
+                    <h2>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h2>
                     <h6>Temperature: ${weatherItem.main.temp}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
                     <h6>Humidity: ${weatherItem.main.humidity}%</h6>
                 </div>
                 <div class="icon">
-                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather-icon">
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
                     <h6>${weatherItem.weather[0].description}</h6>
                 </div>`;
-    } else { // HTML for the other five day forecasts
+    } else { 
         return `<li class="card">
-                    <h3>(${weatherItem.dt_txt})</h3>
-                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather-icon">
-                    <h6>Temperature: ${weatherItem.main.temp}°C</h6>
+                    <h3>(${weatherItem.dt_txt.split(" ")[0]})</h3>
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
+                    <h6>Temp: ${weatherItem.main.temp}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
                     <h6>Humidity: ${weatherItem.main.humidity}%</h6>
                 </li>`;
@@ -30,12 +31,11 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 const getWeatherDetails = (cityName, latitude, longitude) => {
-    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=Metric`;
 
     fetch(WEATHER_API_URL)
     .then(response => response.json())
     .then(data => {
-        // Filter the forecasts to get only one forecast per day
         const ForecastDays = [];
         const fiveDaysForecast = data.list.filter(forecast => {
             const forecastDate = new Date(forecast.dt_txt).getDate();
@@ -44,10 +44,9 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
             }
         });
 
-        // Creating weather cards
         fiveDaysForecast.forEach((weatherItem, index) => {
             const html = createWeatherCard(cityName, weatherItem, index);
-            if (index === 1) {
+            if (index === 0) {
                 currentWeatherDiv.insertAdjacentHTML("beforeend", html);
             } else {
                 weatherCardsDiv.insertAdjacentHTML("beforeend", html);
@@ -56,22 +55,26 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
     })
 }
 
-const getCoordinates = () => {
-    const cityName = cityInput.value;
-    const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+const CityCoordinates = () => {
+    const cityName = cityInput.value.trim();
+    if (cityName === "") return;
+    const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}&units=metric`;
+    
     fetch(API_URL)
     .then(response => response.json())
     .then(data => {
-        const {lat, lon, name} = data[0];
+        if (!data.length) return alert(`No coordinates found for ${cityName}`);
+        const { lat, lon, name } = data[0];
         getWeatherDetails(name, lat, lon);
     })
 }
-searchButton.addEventListener("click", getCoordinates);
+searchButton.addEventListener("click", CityCoordinates);
 
 const UserCoordinates = () => {
     navigator.geolocation.getCurrentPosition(
         position => {
-            const { latitude, longitude } = position.coords; 
+            const { latitude, longitude } = position.coords; // Get coordinates of user location
+            // Get city name from coordinates using reverse geocoding API
             const API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
             fetch(API_URL)
             .then(response => response.json())
@@ -79,6 +82,7 @@ const UserCoordinates = () => {
                 const { name } = data[0];
                 getWeatherDetails(name, latitude, longitude);
             })
-        })
+        });
 }
 locationButton.addEventListener("click", UserCoordinates);
+
