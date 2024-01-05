@@ -61,7 +61,6 @@ const CityCoordinates = () => {
     fetch(API_URL)
     .then(response => response.json())
     .then(data => {
-        if (!data.length) return alert(`No coordinates found for ${cityName}`);
         const { lat, lon, name } = data[0];
         getWeatherDetails(name, lat, lon);
     })
